@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="UglyWords - Plateforme de capture et d'analyse des posts problématiques sur les réseaux sociaux" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://uglywords.com/" />
+    <meta property="og:title" content="UglyWords - Surveillons les discours problématiques" />
+    <meta property="og:description" content="Capturez et analysez les posts insultants et irrespectueux sur les réseaux sociaux avec UglyBot" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://uglywords.com/" />
+    <meta property="twitter:title" content="UglyWords - Surveillons les discours problématiques" />
+    <meta property="twitter:description" content="Capturez et analysez les posts insultants et irrespectueux sur les réseaux sociaux avec UglyBot" />
+    <meta property="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+    
+    <!-- Keywords pour SEO -->
+    <meta name="keywords" content="réseaux sociaux, capture posts, analyse discours, chatbot, facebook, twitter, instagram, tiktok, politique, respect" />
+    
+    <!-- Manifest pour PWA -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data pour SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "UglyWords",
+        "url": "https://uglywords.com",
+        "description": "Plateforme de capture et d'analyse des posts problématiques sur les réseaux sociaux",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web Browser",
+        "permissions": "browser",
+        "creator": {
+            "@type": "Organization",
+            "name": "UglyWords Team"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <title>UglyWords - Plateforme de surveillance des discours problématiques</title>
+    
+    <!-- Style de chargement initial -->
+    <style>
+        /* Style pour le loading screen */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        /* Masquer le loading quand React charge */
+        #loading {
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loaded #loading {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+        <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+            <h1>JavaScript Requis</h1>
+            <p>Vous devez activer JavaScript pour utiliser UglyWords.</p>
+            <p>Cette application React nécessite JavaScript pour fonctionner correctement.</p>
+        </div>
+    </noscript>
+    
+    <!-- Loading Screen -->
+    <div id="loading">
+        <div class="loading-container">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <div class="loading-text">Chargement d'UglyWords...</div>
+                <div style="margin-top: 10px; font-size: 14px; opacity: 0.8;">
+                    🤖 Préparation d'UglyBot
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Root pour React -->
+    <div id="root"></div>
+    
+    <!-- Script pour masquer le loading -->
+    <script>
+        // Masquer le loading quand la page est chargée
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.classList.add('loaded');
+            }, 1000);
+        });
+        
+        // Fallback si React ne charge pas
+        setTimeout(function() {
+            if (!document.getElementById('root').hasChildNodes()) {
+                document.getElementById('loading').innerHTML = `
+                    <div class="loading-container">
+                        <div class="loading-content">
+                            <h2>Erreur de chargement</h2>
+                            <p>UglyWords n'a pas pu se charger correctement.</p>
+                            <p>Veuillez rafraîchir la page ou vérifier votre connexion.</p>
+                            <button onclick="window.location.reload()" style="
+                                background: white;
+                                color: #667eea;
+                                border: none;
+                                padding: 10px 20px;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                margin-top: 15px;
+                                font-weight: bold;
+                            ">Rafraîchir</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }, 10000); // 10 secondes timeout
+    </script>
+    
+    <!-- Analytics (optionnel) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+</body>
+</html>
